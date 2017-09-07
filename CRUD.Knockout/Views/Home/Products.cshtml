@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+}
+
+<div id="body">
+    <h3>List of Products</h3>
+    <table id="products1" data-bind="visible: Products().length > 0">
+        <thead>
+            <tr>
+                <th style="display: none;">ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Products">
+            <tr>
+                <td data-bind="visible:false , text: Id "></td>
+                <td data-bind="text: ProductName"></td>
+                <td data-bind="text: Quantity"></td>
+                <td>
+                    <button data-bind="click: $root.edit">Edit</button>
+                    <button data-bind="click: $root.delete">Delete</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+                
+            
+    <div data-bind="if: Product">
+        <div>
+            <h2>Update Product</h2>
+        </div>
+        <div>
+            <label for="productId" data-bind="visible: false">ID</label>
+            <label data-bind="text: Product().Id, visible: false"></label>
+
+        </div>
+        <div>
+            <label for="ProductName">Product Name</label>
+            <input data-bind="value: Product().ProductName" type="text" title="ProductName" />
+        </div>
+
+        <div>
+            <label for="Quantity">Quantity</label>
+            <input data-bind="value: Product().Quantity" type="text" title="Quantity" />
+        </div>
+
+        <br />
+        <div>
+            <button data-bind="click: $root.update">Update</button>
+            <button data-bind="click: $root.cancel">Cancel</button>
+
+        </div>
+    </div>
+    <div data-bind="ifnot: Product()">
+        <div>
+            <h2>Add New Product</h2>
+        </div>
+        <div>
+            <label for="ProductName">Name</label>
+            <input data-bind="value: ProductName" type="text" title="ProductName" />
+        </div>
+
+        <div>
+            <label for="Quantity">Quantity</label>
+            <input data-bind="value: Quantity" type="text" title="Quantity" />
+        </div>
+        <br />
+        <div>
+            <button data-bind="click: $root.create">Save</button>
+            <button data-bind="click: $root.reset">Reset</button>
+
+        </div>
+    </div>
+</div>
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/knockout-3.4.2.js"></script>
+<script src="~/scripts/KOProduct.js"></script>
+<script src="~/scripts/knockout-3.4.2.debug.js"></script>
